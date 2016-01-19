@@ -1,0 +1,79 @@
+body {
+	background-color: #000;
+	color: #fff;
+	font-family: Michroma;
+	text-align: justify;
+	line-height: 2em;
+	background-image: linear-gradient(45deg, #444 25%, transparent 25%), 
+	linear-gradient(-45deg, #444 25%, transparent 25%),
+	linear-gradient(45deg, transparent 75%, #444 75%), 
+	linear-gradient(-45deg, transparent 75%, #444 75%);			
+	background-size: 2px 2px;
+}
+strong {
+	font-size: 1.05em;
+	color: #0c0;
+}
+.page-wrap {
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.photo-profile {
+	float: left;		
+	padding-right: 2%;	
+}
+.photo-profile img {
+	max-width: 130px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+    -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+	box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+}
+.icon {
+	display: inline-block;
+	background-size: 100%;
+	width: 42px;
+	height: 42px;
+	margin: 2px;
+	text-indent: -999em;
+	text-align: left;
+	margin-bottom: 5px; 
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;			
+}	
+.icon.facebook {
+	background: url("../images/icon-facebook.svg");
+}
+.icon.github {
+	background: url("../images/icon-github.svg");
+}
+.icon.mail {
+	background: url("../images/icon-mail.svg");
+}
+.icon.linkedin {
+	background: url("../images/icon-linkedin.svg");
+}
+.icon.stackoverflow {
+	background: url("../images/icon-stackoverflow.svg");
+}
+.icon.twitter {
+	background: url("../images/icon-twitter.svg");
+}
+.icon.instagram {
+	background: url("../images/icon-instagram.svg");
+}
+.icon.skype {
+	background: url("../images/icon-skype.svg");
+}
+@media (max-width: 600px) {
+
+	body {
+		font-size: 0.85em;
+	}	
+}
