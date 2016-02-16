@@ -10,6 +10,7 @@ var
 	less                = require('gulp-less'),
 	path                = require('path'),
 	minifyCSS           = require('gulp-minify-css'),
+	autoprefixer        = require('gulp-autoprefixer'),
 	handlebars          = require('gulp-compile-handlebars');
 
 // Paths
@@ -21,6 +22,11 @@ var
 	dirDevPartials      = dirDev + '/partials',	
 	dirDistCss          = './assets/css',
 	dirDistJs           = './assets/js';
+
+var autoprefixerOptions = {
+			browsers: ['> 5%'],
+			cascade: false
+};
 
 // Compile handlebars
 gulp.task('compile-handlebars', function () {
@@ -40,6 +46,7 @@ gulp.task('compile-handlebars', function () {
 // Compile less files to a single file and minifies
 gulp.task('less', function(){
 	return gulp.src(dirDevLess + '/*.less')
+	    .pipe(autoprefixer(autoprefixerOptions))
 	    .pipe(less({
 	    	paths: [ path.join(__dirname, 'less', 'includes') ],
 	    }))
@@ -70,6 +77,7 @@ gulp.task('scripts', function(){
 // Concat all css files to a single file and minifies
 gulp.task('css',function(){
   return gulp.src(dirDevCss + '/*.css')
+  		.pipe(autoprefixer(autoprefixerOptions))
 	    .pipe(concat('app.css'))
 	    .pipe(gulp.dest(dirDistCss))
 	    .pipe(minifyCSS())

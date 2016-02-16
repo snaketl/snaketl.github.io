@@ -1,15 +1,18 @@
-.flag-icon {
-  background-size: contain;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  position: relative;
-  display: inline-block;
-  width: 1.33333333em;
- 	line-height: 1em;	
-}
+@cor-menu : #f0f0f0;
 
-.flag-icon:before {
-  content: "\00a0";
+.flag-icon {	
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	position: relative;
+	display: inline-block;
+	width: 1.33333333em;
+	line-height: 1em;	
+
+	&:before {
+	  content: "\00a0";
+	}
+
 }
 
 .flag-icon-portuguese {
@@ -18,4 +21,156 @@
 
 .flag-icon-english {
 	background-image: url(/assets/images/flags/english.svg);		
+}
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+}
+
+body {
+	font-family: Arial, helvetica, sans-serif;
+	line-height: 1.4;
+}
+
+header {
+	background: @cor-menu;
+	width: 100%;
+    padding: 0.5em 0;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.menu-principal {
+	font-weight: bold;
+	list-style-type: none;
+
+	li {
+    	float: left;
+
+    	@media (max-width: 600px) {
+	        padding: 1em 0;
+	        width: 100%;
+    	}
+	}	
+
+	a {
+		display: block;
+		padding-right: 1em;
+		margin-right: 1em;
+
+		line-height: 1;
+		text-decoration: none;
+		text-transform: lowercase;
+
+		&:hover {
+			opacity: 0.8;
+		}
+
+	}
+
+}
+
+.barra-nav,
+.menu-principal {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.barra-nav {
+    margin: 0.4em 0;
+
+    @media (max-width: 600px) {
+        background: @cor-menu;
+        padding: 1em;
+        margin: 0;
+
+        height: 100%;
+        width: 90%;
+        max-width: 320px;
+
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: -90%;
+
+        transition: left 0.3s ease-out;
+    }
+}
+
+html {
+	@media (min-width: 600px) {
+    	font-size: 1.125em;
+    }
+
+	@media (min-width: 1000px) {
+        font-size: 1.25em;
+	}
+}
+
+@media (max-width: 600px) {
+
+    .menu-active .barra-nav {
+    	left: 0;
+    }
+
+    .menu-active:after {
+        content: "";
+        display: block;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        background: rgba(0,0,0,0.4);
+    }
+}
+
+.menu-open,
+.menu-close {
+    background: none;
+    border: 0;
+    outline: 0;
+/*    -webkit-appearance: none; */
+    font-size: 1.6em;
+    text-indent: -999em;
+
+    @media not all and (max-width: 600px) {
+        display: none;    	
+    }
+}
+
+.menu-open {
+    height: 0;
+    width:.75em;
+    padding-top:.125em;
+    border-top: .375em double #000;
+    border-bottom: .125em solid #000;
+
+    vertical-align: middle;
+    margin: 0.5em;    
+}
+
+.menu-close {
+    position: relative;
+    height: 1em;
+    width: 1em;
+
+    &:before {
+        content: '\00D7';
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-indent: 0;
+    }
+
 }
