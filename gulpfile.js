@@ -3,6 +3,7 @@
 // Imports
 var 
 	gulp                = require('gulp'),
+	clean               = require('gulp-clean'),
 	jshint              = require('gulp-jshint'),
 	concat              = require('gulp-concat'),
 	rename              = require('gulp-rename'),
@@ -11,6 +12,7 @@ var
 	path                = require('path'),
 	minifyCSS           = require('gulp-minify-css'),
 	autoprefixer        = require('gulp-autoprefixer'),
+	browserSync         = require('browser-sync'),
 	handlebars          = require('gulp-compile-handlebars');
 
 // Paths
@@ -20,13 +22,18 @@ var
 	dirDevCss           = dirDev + '/css',
 	dirDevJs            = dirDev + '/js',
 	dirDevPartials      = dirDev + '/partials',	
-	dirDistCss          = './assets/css',
-	dirDistJs           = './assets/js';
+	dirDist             = './_dist',
+	dirDistCss          = dirDist + '/assets/css',
+	dirDistJs           = dirDist + '/assets/js';
 
 var autoprefixerOptions = {
-			browsers: ['> 5%'],
-			cascade: false
+	browsers: ['> 5%'],
+	cascade: false
 };
+
+gulp.task('clean', function () {
+	return gulp.src(dirDist).pipe(clean());
+});
 
 // Compile handlebars
 gulp.task('compile-handlebars', function () {
@@ -34,13 +41,13 @@ gulp.task('compile-handlebars', function () {
 	options = {
 		batch : [dirDevPartials]		
 	}
- 
+
 	return gulp.src(dirDev + '/**/*.handlebars')
 		.pipe(handlebars(templateData, options))
 		.pipe(rename(function (path) {
     			path.extname = ".html"
   			}))
-		.pipe(gulp.dest('.'));
+		.pipe(gulp.dest(dirDist));
 });	
 
 // Compile less files to a single file and minifies
@@ -54,7 +61,7 @@ gulp.task('less', function(){
 	    .pipe(gulp.dest(dirDistCss))
 	    .pipe(rename('main.min.css'))
 	    .pipe(minifyCSS())
-	    .pipe(gulp.dest(dirDistCss))
+	    .pipe(gulp.dest(dirDistCss));
 });
 
 // Lints all JS files
@@ -65,7 +72,7 @@ gulp.task('lint', function(){
 });
 
 // Concat JS files to a single file and minifies
-gulp.task('scripts', function(){
+gulp.task('scripts', ['lint'], function(){
 	return gulp.src(dirDevJs + '/*.js')
 	    .pipe(concat('app.js'))
 	    .pipe(gulp.dest(dirDistJs))
@@ -82,16 +89,31 @@ gulp.task('css',function(){
 	    .pipe(gulp.dest(dirDistCss))
 	    .pipe(minifyCSS())
 	    .pipe(rename('app.min.css'))
-	    .pipe(gulp.dest(dirDistCss))
+	    .pipe(gulp.dest(dirDistCss));
 });
 
-// global watcher task
-gulp.task('watch',function(){
-	gulp.watch(dirDev + '/**/*.handlebars',['compile-handlebars']);
-	gulp.watch(dirDevLess + '/*.less',['less']);
-	gulp.watch(dirDevJs + '/*.js',['lint','scripts']);
-	gulp.watch(dirDevCss + '/*.css',['css']);
+gulp.task('watch', function(){
+
+	gulp.watch(dirDev + '/**/*.handlebars', ['compile-handlebars']);
+	gulp.watch(dirDevLess + '/*.less', ['less']);
+	gulp.watch(dirDevJs + '/*.js', ['scripts']);
+	gulp.watch(dirDevCss + '/*.css', ['css']);
+
 });
 
-// gulp default task (runs all individual tasks, then kicks off the watcher task)
-gulp.task('default', ['compile-handlebars', 'less', 'lint', 'scripts','css','watch']);
+gulp.task('server', ['watch'], function(){
+
+    browserSync.init({
+        server: {
+            baseDir: dirDist
+        }
+    });
+
+    gulp.watch(dirDist + '/**/*').on('change', browserSync.reload);
+
+});
+
+// gulp default task (runs all individual tasks)
+gulp.task('default', ['clean'], function() {
+	gulp.start('compile-handlebars', 'less', 'scripts','css');
+});
