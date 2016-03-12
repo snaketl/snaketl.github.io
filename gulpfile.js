@@ -13,18 +13,22 @@ var
 	minifyCSS           = require('gulp-minify-css'),
 	autoprefixer        = require('gulp-autoprefixer'),
 	browserSync         = require('browser-sync'),
+	imagemin            = require('gulp-imagemin'),
 	handlebars          = require('gulp-compile-handlebars');
 
 // Paths
 var 
 	dirDev              = './_dev',	
+	dirDist             = './_dist',
 	dirDevLess          = dirDev + '/less',
 	dirDevCss           = dirDev + '/css',
 	dirDevJs            = dirDev + '/js',
 	dirDevPartials      = dirDev + '/partials',	
-	dirDist             = './_dist',
-	dirDistCss          = dirDist + '/assets/css',
-	dirDistJs           = dirDist + '/assets/js';
+	dirDevAssets        = dirDev + '/assets',	
+	dirDistAssets       = dirDist + '/assets',
+	dirDistImages       = dirDistAssets + '/images',
+	dirDistCss          = dirDistAssets + '/css',
+	dirDistJs           = dirDistAssets + '/js';
 
 var autoprefixerOptions = {
 	browsers: ['> 5%'],
@@ -33,6 +37,17 @@ var autoprefixerOptions = {
 
 gulp.task('clean', function () {
 	return gulp.src(dirDist).pipe(clean());
+});
+
+gulp.task('copy', ['clean'], function () {
+	return gulp.src(dirDevAssets + '/**/*')
+		.pipe(gulp.dest(dirDistAssets));
+});
+
+gulp.task('build-img', function() {
+  return gulp.src(dirDistImages + '/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest(dirDistImages));
 });
 
 // Compile handlebars
@@ -114,6 +129,6 @@ gulp.task('server', ['watch'], function(){
 });
 
 // gulp default task (runs all individual tasks)
-gulp.task('default', ['clean'], function() {
-	gulp.start('compile-handlebars', 'less', 'scripts','css');
+gulp.task('default', ['copy'], function() {
+	gulp.start('compile-handlebars', 'less', 'scripts','css', 'build-img');
 });

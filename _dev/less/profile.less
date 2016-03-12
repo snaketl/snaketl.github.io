@@ -1,0 +1,85 @@
+@import "variables";
+
+@profile-image-size-small: 80px;
+@profile-image-size-large: 120px;
+
+.profile {
+    position: relative;
+    text-align: center;
+}
+
+.profile-image {
+    width: @profile-image-size-small;
+    height: @profile-image-size-small;
+    position: absolute;
+    top: -(@profile-image-size-small / 2);
+    right: 50%;
+    margin-right: -(@profile-image-size-small / 2);
+    background-size: cover;
+    border-radius: @profile-image-size-small;
+    z-index: 99;
+    overflow: hidden;    
+    text-indent: -9999px;
+    border: 3px solid white;
+    background-color: white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    background-image: url('@{image-src}/profile.png');
+
+    @media @tablet-pc {
+        width: @profile-image-size-large;
+        height: @profile-image-size-large;
+        margin-right: -(@profile-image-size-large / 2);
+        top: -(@profile-image-size-large / 2);
+        border-radius: @profile-image-size-large / 2;
+    }
+
+}
+
+.profile-title {
+    margin: 0;
+    padding: 54px 16px 8px;
+    font-size: 34px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -2px;
+    outline: 0;
+    line-height: 50px;
+
+    @media @tablet-pc {
+        font-size: 50px;
+        padding: 84px 16px 8px;
+    }
+
+}
+
+.profile-description {
+    margin: 0;
+    padding: 0px 0px 8px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: -2px;
+    outline: 0;
+    line-height: 50px;
+
+    @media @tablet-pc {
+        font-size: 24px;
+    }
+
+}
+
+.profile-link-icon {
+    text-indent: -9999px;
+    display: inline-block;
+    background-size: 100%;
+    width: 28px;
+    height: 28px;     
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+
+    @media @tablet-pc {
+        width: 32px;
+        height: 32px;   
+        border-radius: 10px;  
+    }    
+}
