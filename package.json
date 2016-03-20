@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Personal website",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^4.0.0"
+  },
   "devDependencies": {
     "browser-sync": "^2.11.1",
     "del": "^2.2.0",

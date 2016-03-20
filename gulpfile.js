@@ -21,7 +21,6 @@ var
 	dirDev              = './_dev',	
 	dirDist             = './_dist',
 	dirDevLess          = dirDev + '/less',
-	dirDevCss           = dirDev + '/css',
 	dirDevJs            = dirDev + '/js',
 	dirDevPartials      = dirDev + '/partials',	
 	dirDevAssets        = dirDev + '/assets',	
@@ -67,7 +66,7 @@ gulp.task('compile-handlebars', function () {
 
 // Compile less files to a single file and minifies
 gulp.task('less', function(){
-	return gulp.src(dirDevLess + '/*.less')
+	return gulp.src(['./node_modules/normalize.css/normalize.css', dirDevLess + '/*.less'])
 	    .pipe(autoprefixer(autoprefixerOptions))
 	    .pipe(less({
 	    	paths: [ path.join(__dirname, 'less', 'includes') ],
@@ -96,23 +95,11 @@ gulp.task('scripts', ['lint'], function(){
 	    .pipe(gulp.dest(dirDistJs));
 });
 
-// Concat all css files to a single file and minifies
-gulp.task('css',function(){
-  return gulp.src(dirDevCss + '/*.css')
-  		.pipe(autoprefixer(autoprefixerOptions))
-	    .pipe(concat('app.css'))
-	    .pipe(gulp.dest(dirDistCss))
-	    .pipe(minifyCSS())
-	    .pipe(rename('app.min.css'))
-	    .pipe(gulp.dest(dirDistCss));
-});
-
 gulp.task('watch', function(){
 
 	gulp.watch(dirDev + '/**/*.handlebars', ['compile-handlebars']);
 	gulp.watch(dirDevLess + '/*.less', ['less']);
 	gulp.watch(dirDevJs + '/*.js', ['scripts']);
-	gulp.watch(dirDevCss + '/*.css', ['css']);
 
 });
 
@@ -130,5 +117,5 @@ gulp.task('server', ['watch'], function(){
 
 // gulp default task (runs all individual tasks)
 gulp.task('default', ['copy'], function() {
-	gulp.start('compile-handlebars', 'less', 'scripts','css', 'build-img');
+	gulp.start('compile-handlebars', 'less', 'scripts', 'build-img');
 });
