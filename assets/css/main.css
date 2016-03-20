@@ -1,79 +1,277 @@
+@import url(https://fonts.googleapis.com/css?family=Rambla:400,700);
+* {
+  font-family: 'Rambla', sans-serif;
+}
+html,
 body {
-	background-color: #000;
-	color: #fff;
-	font-family: Michroma;
-	text-align: justify;
-	line-height: 2em;
-	background-image: linear-gradient(45deg, #444 25%, transparent 25%), 
-	linear-gradient(-45deg, #444 25%, transparent 25%),
-	linear-gradient(45deg, transparent 75%, #444 75%), 
-	linear-gradient(-45deg, transparent 75%, #444 75%);			
-	background-size: 2px 2px;
+  height: 100%;
 }
-strong {
-	font-size: 1.05em;
-	color: #0c0;
+body {
+  color: #333333;
 }
-.page-wrap {
-	margin-left: 2%;
-	margin-right: 2%;
+.imagetop {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
 }
-.photo-profile {
-	float: left;		
-	padding-right: 2%;	
+@media only screen and (min-width: 480px) {
+  .imagetop {
+    height: 300px;
+  }
 }
-.photo-profile img {
-	max-width: 130px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-    -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
-	box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+.imagetop-image {
+  background-size: cover;
+  background-position: center;
+  background-image: url('/assets/images/code_amsterdam.png');
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-indent: -9999px;
 }
-.icon {
-	display: inline-block;
-	background-size: 100%;
-	width: 42px;
-	height: 42px;
-	margin: 2px;
-	text-indent: -999em;
-	text-align: left;
-	margin-bottom: 5px; 
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;			
-}	
-.icon.facebook {
-	background: url("../images/icon-facebook.svg");
+main {
+  margin: 0 auto;
+  max-width: 1024px;
+  font-size: 20px;
+  text-align: justify;
+  line-height: 2em;
 }
-.icon.github {
-	background: url("../images/icon-github.svg");
+main:after {
+  content: "";
+  display: block;
+  height: 50px;
 }
-.icon.mail {
-	background: url("../images/icon-mail.svg");
+@media only screen and (min-width: 480px) {
+  main {
+    font-size: 24px;
+    line-height: 1.5em;
+  }
 }
-.icon.linkedin {
-	background: url("../images/icon-linkedin.svg");
+@media (max-width: 1024px) {
+  main {
+    margin: 0 5% 0 5%;
+  }
 }
-.icon.stackoverflow {
-	background: url("../images/icon-stackoverflow.svg");
+.about-icon {
+  text-indent: -9999px;
+  display: inline-block;
+  background-size: 100%;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
-.icon.twitter {
-	background: url("../images/icon-twitter.svg");
+@media only screen and (min-width: 480px) {
+  .about-icon {
+    width: 42px;
+    height: 42px;
+  }
 }
-.icon.instagram {
-	background: url("../images/icon-instagram.svg");
+nav {
+  font-size: 22px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
-.icon.skype {
-	background: url("../images/icon-skype.svg");
+@media only screen and (min-width: 480px) {
+  nav {
+    font-size: 28px;
+  }
 }
-@media (max-width: 600px) {
+nav a {
+  text-decoration: none;
+}
+nav a:link {
+  text-decoration: none;
+}
+nav a:visited {
+  color: #666666;
+}
+footer {
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  background-color: #333333;
+}
+footer p {
+  text-align: center;
+  font-size: 11px;
+  color: #ffffff;
+}
+@media only screen and (min-width: 480px) {
+  footer p {
+    font-size: 16px;
+  }
+}
+.divider {
+  margin: 20px 0 0 0;
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #333333 inset;
+}
 
-	body {
-		font-size: 0.85em;
-	}	
+.blog-entries {
+  list-style-type: none;
 }
+.blog-entry-title {
+  font-size: 26px;
+}
+.blog-entry-title a {
+  text-decoration: none;
+  color: #333333;
+}
+.blog-entry-title a:link {
+  text-decoration: none;
+}
+.blog-entry-title a:visited {
+  color: #666666;
+}
+@media only screen and (min-width: 480px) {
+  .blog-entry-title {
+    font-size: 32px;
+  }
+}
+.blog-entry-preview {
+  font-size: 16px;
+}
+@media only screen and (min-width: 480px) {
+  .blog-entry-preview {
+    font-size: 22px;
+  }
+}
+.blog-entry-date {
+  font-size: 12px;
+  display: inline-block;
+}
+@media only screen and (min-width: 480px) {
+  .blog-entry-date {
+    font-size: 16px;
+  }
+}
+.blog-entry-tags {
+  font-size: 12px;
+  display: inline-block;
+}
+@media only screen and (min-width: 480px) {
+  .blog-entry-tags {
+    font-size: 16px;
+  }
+}
+.blog-entry-tag {
+  font-size: 12px;
+}
+@media only screen and (min-width: 480px) {
+  .blog-entry-tag {
+    font-size: 16px;
+  }
+}
+
+.icon-github {
+  background: url('/assets/images/icons/icon-github.svg');
+}
+.icon-twitter {
+  background: url('/assets/images/icons/icon-twitter.svg');
+}
+.icon-linkedin {
+  background: url('/assets/images/icons/icon-linkedin.svg');
+}
+.icon-facebook {
+  background: url('/assets/images/icons/icon-facebook.svg');
+}
+.icon-instagram {
+  background: url('/assets/images/icons/icon-instagram.svg');
+}
+.icon-mail {
+  background: url('/assets/images/icons/icon-mail.svg');
+}
+.icon-skype {
+  background: url('/assets/images/icons/icon-skype.svg');
+}
+.icon-cup {
+  background: url('/assets/images/icons/icon-cup.svg');
+}
+.icon-heart {
+  background: url('/assets/images/icons/icon-heart.svg');
+}
+
+.profile {
+  position: relative;
+  text-align: center;
+}
+.profile-image {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: -40px;
+  right: 50%;
+  margin-right: -40px;
+  background-size: cover;
+  border-radius: 80px;
+  z-index: 99;
+  overflow: hidden;
+  text-indent: -9999px;
+  border: 3px solid white;
+  background-color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  background-image: url('/assets/images/profile.png');
+}
+@media only screen and (min-width: 480px) {
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    margin-right: -60px;
+    top: -60px;
+    border-radius: 60px;
+  }
+}
+.profile-title {
+  margin: 0;
+  padding: 54px 16px 8px;
+  font-size: 34px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -2px;
+  outline: 0;
+  line-height: 50px;
+}
+@media only screen and (min-width: 480px) {
+  .profile-title {
+    font-size: 50px;
+    padding: 84px 16px 8px;
+  }
+}
+.profile-description {
+  margin: 0;
+  padding: 0px 0px 8px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: -2px;
+  outline: 0;
+  line-height: 50px;
+}
+@media only screen and (min-width: 480px) {
+  .profile-description {
+    font-size: 24px;
+  }
+}
+.profile-link-icon {
+  text-indent: -9999px;
+  display: inline-block;
+  background-size: 100%;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+@media only screen and (min-width: 480px) {
+  .profile-link-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+  }
+}
+
