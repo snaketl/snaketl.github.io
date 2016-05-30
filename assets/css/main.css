@@ -559,6 +559,9 @@ footer p {
 .icon-heart {
   background: url('/assets/images/icons/icon-heart.svg');
 }
+.icon-hackerrank {
+  background: url('/assets/images/icons/icon-hackerrank.svg');
+}
 
 .profile {
   position: relative;
